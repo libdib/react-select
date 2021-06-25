@@ -1,5 +1,11 @@
 # react-select
 
+## 4.3.2
+
+### Patch Changes
+
+- [4b028829](https://github.com/JedWatson/react-select/commit/4b028829721bcd9014d70ee8dce1efbaf6373cd0) [#4634](https://github.com/JedWatson/react-select/pull/4634) - The readonly attribute has been removed from the DummyInput to improve accessibility
+
 ---
 
 ## DRAFT NOTES for TypeScript Release
