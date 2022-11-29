@@ -556,10 +556,12 @@ class Select extends React.Component {
 	}
 
 	handleMenuScroll (event) {
-		if (!this.props.onMenuScrollToBottom) return;
 		let { target } = event;
 		if (target.scrollHeight > target.offsetHeight && (target.scrollHeight - target.offsetHeight - target.scrollTop) <= 0) {
-			this.props.onMenuScrollToBottom();
+			this.props.onMenuScrollToBottom && this.props.onMenuScrollToBottom();
+		}
+		if (target.offsetHeight > 0 && target.scrollTop === 0) {
+			this.props.onMenuScrollToTop && this.props.onMenuScrollToTop();
 		}
 	}
 
@@ -1235,6 +1237,7 @@ Select.propTypes = {
 	onInputChange: PropTypes.func,        // onInputChange handler: function (inputValue) {}
 	onInputKeyDown: PropTypes.func,       // input keyDown handler: function (event) {}
 	onMenuScrollToBottom: PropTypes.func, // fires when the menu is scrolled to the bottom; can be used to paginate options
+	onMenuScrollToTop: PropTypes.func,    // fires when the menu is scrolled to the top; can be used to paginate options
 	onOpen: PropTypes.func,               // fires when the menu is opened
 	onSelectResetsInput: PropTypes.bool,  // whether input is cleared on select (works only for multiselect)
 	onValueClick: PropTypes.func,         // onClick handler for value labels: function (value, event) {}
