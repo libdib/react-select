@@ -739,8 +739,15 @@ var Select$1 = function (_React$Component) {
 			if (typeof this.props.autofocus !== 'undefined' && typeof console !== 'undefined') {
 				console.warn('Warning: The autofocus prop has changed to autoFocus, support will be removed after react-select@1.0');
 			}
-			if (this.props.autoFocus || this.props.autofocus) {
+			if (this.props.startOpen || this.props.autoFocus || this.props.autofocus) {
 				this.focus();
+				if (this.props.startOpen) {
+					this.setState({
+						isOpen: true,
+						isPseudoFocused: false,
+						focusedOption: null
+					});
+				}
 			}
 		}
 	}, {
@@ -1974,6 +1981,7 @@ Select$1.propTypes = {
 	scrollMenuIntoView: PropTypes.bool, // boolean to enable the viewport to shift so that the full menu fully visible when engaged
 	searchable: PropTypes.bool, // whether to enable searching feature or not
 	simpleValue: PropTypes.bool, // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
+	startOpen: PropTypes.bool, // if true, select starts open
 	style: PropTypes.object, // optional style to apply to the control
 	tabIndex: stringOrNumber, // optional tab index of the control
 	tabSelectsValue: PropTypes.bool, // whether to treat tabbing out while focused to be value selection
@@ -2025,6 +2033,7 @@ Select$1.defaultProps = {
 	scrollMenuIntoView: true,
 	searchable: true,
 	simpleValue: false,
+	startOpen: false,
 	tabSelectsValue: true,
 	trimFilter: true,
 	valueComponent: Value,
